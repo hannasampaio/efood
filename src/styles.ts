@@ -1,10 +1,10 @@
 import { createGlobalStyle } from 'styled-components'
 
-const cores = {
-  vermelho: '#E66767',
-  branco: '#FFFFFF',
+export const cores = {
+  vermelha: '#E66767',
+  branca: '#FFFFFF',
   bege: '#FFEBD9',
-  begeClaro: '#FFF8F2'
+  begeClara: '#FFF8F2'
 }
 
 export const GlobalCss = createGlobalStyle`
@@ -16,7 +16,13 @@ export const GlobalCss = createGlobalStyle`
     }
 
     body {
-      background-color:${cores.begeClaro};
-      color: ${cores.vermelho};
+      background-color:${cores.begeClara};
+      color: ${cores.vermelha};
     }
+
+    .container{
+      max-width: 1024px;
+      widht: 100%;
+      margin: 0 auto;
+  }
 `
