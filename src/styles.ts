@@ -13,6 +13,7 @@ export const GlobalCss = createGlobalStyle`
     padding: O;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
+    text-decoration: none;
     }
 
     body {
@@ -20,9 +21,8 @@ export const GlobalCss = createGlobalStyle`
       color: ${cores.vermelha};
     }
 
-    .container{
+    .container {
       max-width: 1024px;
-      widht: 100%;
+      width: 100%;
       margin: 0 auto;
-  }
 `
