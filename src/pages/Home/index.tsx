@@ -1,8 +1,9 @@
-import ProductsList from '../../Components/ProductsList'
+import ProductsList from '../../Components/RestaurantList'
 import PratosClass from '../../models/Pratos'
 
 import Hioki from '../../assets/images/japonesa.png'
 import VitaTrattoria from '../../assets/images/italiana.png'
+import Hero from '../../Components/Hero'
 
 const Pratos: PratosClass[] = [
   {
@@ -69,6 +70,7 @@ const Pratos: PratosClass[] = [
 
 const Home = () => (
   <>
+    <Hero />
     <ProductsList pratos={Pratos} />
   </>
 )
