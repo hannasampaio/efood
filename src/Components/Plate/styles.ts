@@ -11,10 +11,12 @@ export const PizzaContainer = styled.div`
   height: 338px;
   background-color: ${cores.vermelha};
   color: ${cores.bege};
+
   h2 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 900;
   }
+
   p {
     font-weight: 400;
     font-size: 14px;

@@ -13,6 +13,12 @@ export const HeaderContainer = styled.div`
   background-image: url(${fundo});
   background-size: cover;
   color: ${cores.vermelha};
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `
 
 export const TextLink = styled(Link)`

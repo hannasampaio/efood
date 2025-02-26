@@ -2,31 +2,33 @@ import styled from 'styled-components'
 import restaurant from '../../assets/images/italiana.png'
 import { cores } from '../../styles'
 
-const textBaseStyle = `
-  color: ${cores.branca};
-  margin-left: 170px;
-`
-
 export const ItalianaBanner = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: space-around;
+  position: relative;
   height: 280px;
   margin-bottom: 56px;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url(${restaurant});
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: start;
+    height: 100%;
+    color: ${cores.branca};
+  }
 `
 
 export const CategoriaPrato = styled.span`
-  ${textBaseStyle};
-  font-weight: 100; /* Corrigido o erro de digitação */
+  font-weight: 100;
   font-size: 32px;
+  margin-top: 24px;
 `
 
 export const NomeRestaurante = styled.h1`
-  ${textBaseStyle};
+  margin-bottom: 32px;
 `
