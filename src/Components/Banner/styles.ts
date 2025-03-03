@@ -1,13 +1,15 @@
 import styled from 'styled-components'
-import restaurant from '../../assets/images/italiana.png'
 import { cores } from '../../styles'
 
-export const ItalianaBanner = styled.div`
+type Props = {
+  imagem: string
+}
+
+export const ItalianaBanner = styled.div<Props>`
   position: relative;
   height: 280px;
   margin-bottom: 56px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(${restaurant});
+  background-image: url(${(props) => props.imagem});
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;

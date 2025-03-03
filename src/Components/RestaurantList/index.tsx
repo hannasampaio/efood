@@ -1,26 +1,26 @@
-import Pratos from '../../models/Pratos'
-import Product from '../Restaurant'
+import { restaurantsType } from '../../pages/Home'
+import Restaurant from '../Restaurant'
 import { List } from './styles'
 
-export type Props = {
-  pratos: Pratos[]
+type Props = {
+  restaurants: restaurantsType[]
 }
 
-const ProductsList = ({ pratos }: Props) => (
+const RestaurantList = ({ restaurants }: Props) => (
   <List className="container">
-    {pratos.map((pratos) => (
-      <Product
-        key={pratos.id}
-        imagem={pratos.imagem}
-        categoria={pratos.categoria}
-        destaque={pratos.destaque}
-        nome={pratos.nome}
-        nota={pratos.nota}
-        info={pratos.info}
-        link={pratos.link}
+    {restaurants.map((restaurant) => (
+      <Restaurant
+        key={restaurant.id}
+        id={restaurant.id}
+        imagem={restaurant.capa}
+        categoria={restaurant.tipo}
+        destaque={restaurant.destaque}
+        nome={restaurant.titulo}
+        nota={restaurant.avaliacao}
+        info={restaurant.descricao}
       />
     ))}
   </List>
 )
 
-export default ProductsList
+export default RestaurantList

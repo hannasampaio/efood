@@ -12,6 +12,12 @@ export const PizzaContainer = styled.div`
   background-color: ${cores.vermelha};
   color: ${cores.bege};
 
+  img {
+    width: 304px;
+    height: 167px;
+    object-fit: cover;
+  }
+
   h2 {
     font-size: 16px;
     font-weight: 900;
