@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import { Button as BaseButton } from '../Plate/styles'
 
 export const Modal = styled.div`
@@ -38,6 +38,16 @@ export const ModalContent = styled.div`
   width: 1024px;
   height: 344px;
   z-index: 1;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 90%;
+    height: auto;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 95%;
+    height: auto;
+  }
 `
 
 export const CloseButton = styled.button`
@@ -57,6 +67,16 @@ export const Image = styled.img`
   height: 280px;
   margin: 0 24px;
   object-fit: cover;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 200px;
+    height: 200px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 180px;
+    height: 330px;
+  }
 `
 
 export const Content = styled.div`
@@ -76,9 +96,33 @@ export const Description = styled.p`
   font-size: 14px;
   line-height: 22px;
   margin-bottom: 16px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 80%;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 90%;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: justify;
+  }
 `
 
 export const ModalButton = styled(BaseButton)`
   width: 218px;
   height: 24px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    margin-bottom: 36px;
+    width: 300px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 16px;
+    width: 170px;
+    height: 40px;
+  }
 `

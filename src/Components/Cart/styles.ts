@@ -19,9 +19,13 @@ export const CartContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   justify-content: flex-end;
   z-index: 1;
+
+  &.is-open {
+    display: flex;
+  }
 `
 
 export const Sidebar = styled.aside`
@@ -101,4 +105,11 @@ export const CheckoutButton = styled.button`
   color: ${cores.vermelha};
   border: none;
   cursor: pointer;
+`
+
+export const EmptyCartMessage = styled.p`
+  text-align: center;
+  font-size: 18px;
+  color: ${cores.branca};
+  margin-top: 20px;
 `

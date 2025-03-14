@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import { Link } from 'react-router-dom'
 
 type Props = {
@@ -21,6 +21,11 @@ export const Container = styled.div`
   border: 1px solid ${cores.vermelha};
   color: ${cores.vermelha};
   background-color: ${cores.branca};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 90%;
+    height: auto;
+  }
 `
 
 export const Imagem = styled.img`
@@ -66,6 +71,10 @@ export const Button = styled(Link)`
   margin-top: 8px;
   color: ${cores.begeClara};
   background-color: ${cores.vermelha};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 8px;
+  }
 `
 export const TagContainer = styled.div<Props>`
   display: flex;
@@ -73,6 +82,10 @@ export const TagContainer = styled.div<Props>`
   top: 16px;
   left: ${(props) => (props.destaque ? '250px' : '390px')};
   gap: 8px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    left: 250px;
+  }
 `
 
 export const Tag = styled.span`
