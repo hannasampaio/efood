@@ -1,25 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { formataPreco } from '../../utils'
 
-import {
-  Overlay,
-  CartContainer,
-  Sidebar,
-  Prices,
-  CartItem,
-  CheckoutButton,
-  EmptyCartMessage
-} from './styles'
+import * as S from './styles'
 import { RootReducer } from '../../store'
-import { close, remove } from '../../store/reducers/cart'
+import { closeCart, openAddress, remove } from '../../store/reducers/cart'
 
 const Cart = () => {
-  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+  const { cartIsOpen, items } = useSelector((state: RootReducer) => state.cart)
 
   const dispatch = useDispatch()
 
-  const closeCart = () => {
-    dispatch(close())
+  const closeCar = () => {
+    dispatch(closeCart())
   }
 
   const getTotalPrice = () => {
@@ -32,39 +24,45 @@ const Cart = () => {
     dispatch(remove(id))
   }
 
+  const continueToAddress = () => {
+    dispatch(openAddress())
+    dispatch(closeCart())
+  }
+
   return (
-    <CartContainer className={isOpen ? 'is-open' : ''}>
-      <Overlay onClick={closeCart} />
-      <Sidebar>
+    <S.CartContainer className={cartIsOpen ? 'cart-is-open' : ''}>
+      <S.Overlay onClick={closeCar} />
+      <S.Sidebar>
         {items.length === 0 ? (
-          <EmptyCartMessage>O carrinho está vazio!</EmptyCartMessage>
+          <S.EmptyCartMessage>O carrinho está vazio!</S.EmptyCartMessage>
         ) : (
           <>
             <ul>
               {items.map((item) => (
-                <CartItem key={item.id}>
+                <S.CartItem key={item.id}>
                   <img src={item.foto} alt={item.nome} />
                   <div>
                     <h3>{item.nome}</h3>
                     <span>{formataPreco(item.preco)}</span>
                   </div>
                   <button onClick={() => removeItem(item.id)} type="button" />
-                </CartItem>
+                </S.CartItem>
               ))}
             </ul>
-            <Prices>
+            <S.Prices>
               Valor total <span>{formataPreco(getTotalPrice())}</span>
-            </Prices>
-            <CheckoutButton
+            </S.Prices>
+            <S.CheckoutButton
               title="Clique aqui para continuar com a entrega"
               type="button"
+              onClick={continueToAddress}
             >
               Continuar com a entrega
-            </CheckoutButton>
+            </S.CheckoutButton>
           </>
         )}
-      </Sidebar>
-    </CartContainer>
+      </S.Sidebar>
+    </S.CartContainer>
   )
 }
 

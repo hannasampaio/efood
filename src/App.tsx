@@ -7,6 +7,7 @@ import Rotas from './routes'
 import Footer from './Components/Footer'
 import { store } from './store'
 import Cart from './Components/Cart'
+import Checkout from './Components/Checkout'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Rotas />
         <Footer />
         <Cart />
+        <Checkout />
       </BrowserRouter>
     </Provider>
   )

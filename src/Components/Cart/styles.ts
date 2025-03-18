@@ -23,7 +23,7 @@ export const CartContainer = styled.div`
   justify-content: flex-end;
   z-index: 1;
 
-  &.is-open {
+  &.cart-is-open {
     display: flex;
   }
 `
@@ -86,6 +86,7 @@ export const CartItem = styled.li`
   button {
     position: absolute;
     background-image: url(${trash});
+    background-repeat: no-repeat;
     right: 16px;
     top: 70px;
     width: 16px;
@@ -94,6 +95,7 @@ export const CartItem = styled.li`
     background-color: transparent;
     cursor: pointer;
   }
+}
 `
 
 export const CheckoutButton = styled.button`

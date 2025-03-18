@@ -5,7 +5,7 @@ import * as S from './styles'
 import botaoFechar from '../../assets/images/fechar.png'
 import { modalType } from '../PlatesList'
 import { ModalButton } from './styles'
-import { add, open } from '../../store/reducers/cart'
+import { add, openCart } from '../../store/reducers/cart'
 import { formataPreco } from '../../utils'
 
 interface Props extends modalType {
@@ -40,7 +40,7 @@ const Modal = ({
     const plate = { id, nome, descricao, foto, porcao, preco }
 
     dispatch(add(plate))
-    dispatch(open())
+    dispatch(openCart())
   }
 
   return (
