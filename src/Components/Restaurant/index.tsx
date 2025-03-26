@@ -3,37 +3,37 @@ import Star from '../../assets/images/estrela.png'
 
 type Props = {
   id: number
-  imagem: string
+  image: string
   nome: string
   nota: number
   info: string
   destaque: boolean
-  categoria: string
+  category: string
 }
 
 const Restaurant = ({
   id,
-  imagem,
+  image,
   nome,
   nota,
   info,
   destaque,
-  categoria
+  category
 }: Props) => {
-  const retornaInfoRestaurante = (info: string) => {
-    if (info.length > 183) {
-      return info.slice(0, 180) + '...'
+  const returnRestaurantInfo = (text: string) => {
+    if (text.length > 183) {
+      return text.slice(0, 180) + '...'
     }
 
-    return info
+    return text
   }
 
   return (
     <S.Container>
-      <S.Imagem src={imagem} alt={nome} />
+      <S.Image src={image} alt={nome} />
       <S.TagContainer destaque={destaque}>
         {destaque ? <S.Tag>Destaque da semana</S.Tag> : ''}
-        <S.Tag>{categoria}</S.Tag>
+        <S.Tag>{category}</S.Tag>
       </S.TagContainer>
       <S.Title>
         <h2>{nome}</h2>
@@ -41,7 +41,7 @@ const Restaurant = ({
           {nota} <img src={Star} alt="Nota do restaurante" />
         </span>
       </S.Title>
-      <S.Info>{retornaInfoRestaurante(info)}</S.Info>
+      <S.Info>{returnRestaurantInfo(info)}</S.Info>
       <S.Button to={`/restaurant/${id}`}>Saiba mais</S.Button>
     </S.Container>
   )

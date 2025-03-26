@@ -1,23 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { formataPreco } from '../../utils'
+import { RootReducer } from '../../store'
+
+import { closeCart, openAddress, remove } from '../../store/reducers/cart'
+import { parseToBrl, getTotalPrice } from '../../utils'
 
 import * as S from './styles'
-import { RootReducer } from '../../store'
-import { closeCart, openAddress, remove } from '../../store/reducers/cart'
 
 const Cart = () => {
   const { cartIsOpen, items } = useSelector((state: RootReducer) => state.cart)
 
   const dispatch = useDispatch()
 
+  const TotalPrice = getTotalPrice(items)
+
   const closeCar = () => {
     dispatch(closeCart())
-  }
-
-  const getTotalPrice = () => {
-    return items.reduce((acumulador, valorAtual) => {
-      return (acumulador += valorAtual.preco!)
-    }, 0)
   }
 
   const removeItem = (id: number) => {
@@ -43,14 +40,14 @@ const Cart = () => {
                   <img src={item.foto} alt={item.nome} />
                   <div>
                     <h3>{item.nome}</h3>
-                    <span>{formataPreco(item.preco)}</span>
+                    <span>{parseToBrl(item.preco)}</span>
                   </div>
                   <button onClick={() => removeItem(item.id)} type="button" />
                 </S.CartItem>
               ))}
             </ul>
             <S.Prices>
-              Valor total <span>{formataPreco(getTotalPrice())}</span>
+              Valor total <span>{parseToBrl(TotalPrice)}</span>
             </S.Prices>
             <S.CheckoutButton
               title="Clique aqui para continuar com a entrega"

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 import trash from '../../assets/images/lixeira.png'
 
@@ -9,7 +9,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${cores.preta};
+  background-color: ${colors.black};
   opacity: 0.8;
 `
 
@@ -29,7 +29,7 @@ export const CartContainer = styled.div`
 `
 
 export const Sidebar = styled.aside`
-  background-color: ${cores.vermelha};
+  background-color: ${colors.red};
   z-index: 1;
   padding: 32px 8px;
   max-width: 360px;
@@ -46,7 +46,7 @@ export const Prices = styled.p`
   display: flex;
   font-weight: 700;
   font-size: 14px;
-  color: ${cores.bege};
+  color: ${colors.beige};
   align-items: center;
   justify-content: space-between;
   margin-top: 40px;
@@ -55,8 +55,8 @@ export const Prices = styled.p`
 
 export const CartItem = styled.li`
   display: flex;
-  background-color: ${cores.bege};
-  color: ${cores.vermelha};
+  background-color: ${colors.beige};
+  color: ${colors.red};
   position: relative;
   width: 100%;
   max-width: 344px;
@@ -103,8 +103,8 @@ export const CheckoutButton = styled.button`
   height: 24px;
   font-size: 14px;
   font-weight: 700;
-  background-color: ${cores.bege};
-  color: ${cores.vermelha};
+  background-color: ${colors.beige};
+  color: ${colors.red};
   border: none;
   cursor: pointer;
 `
@@ -112,6 +112,6 @@ export const CheckoutButton = styled.button`
 export const EmptyCartMessage = styled.p`
   text-align: center;
   font-size: 18px;
-  color: ${cores.branca};
+  color: ${colors.white};
   margin-top: 20px;
 `

@@ -18,9 +18,9 @@ const RestaurantPage = () => {
     <>
       <Header />
       <Banner
-        categoria={restaurant.tipo}
-        imagem={restaurant.capa}
-        nome={restaurant.titulo}
+        category={restaurant.tipo}
+        image={restaurant.capa}
+        name={restaurant.titulo}
       />
       <PlatesList plates={restaurant.cardapio} />
     </>

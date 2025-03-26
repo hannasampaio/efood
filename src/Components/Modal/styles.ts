@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { breakpoints, cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { Button as BaseButton } from '../Plate/styles'
 
 export const Modal = styled.div`
@@ -33,8 +33,8 @@ export const ModalContent = styled.div`
   position: relative;
   align-items: center;
   justify-content: flex-start;
-  background-color: ${cores.vermelha};
-  color: ${cores.branca};
+  background-color: ${colors.red};
+  color: ${colors.white};
   width: 1024px;
   height: 344px;
   z-index: 1;

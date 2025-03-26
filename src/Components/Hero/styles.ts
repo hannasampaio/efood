@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import fundo from '../../assets/images/fundo.png'
-import { breakpoints, cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const Hero = styled.header`
   display: flex;
@@ -26,7 +26,7 @@ export const Title = styled.h1`
   font-size: 36px;
   line-height: 42px;
   width: 539px;
-  color: ${cores.vermelha};
+  color: ${colors.red};
   margin-top: 138px;
 
   @media (max-width: ${breakpoints.desktop}) {

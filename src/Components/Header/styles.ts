@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import fundo from '../../assets/images/fundo.png'
-import { breakpoints, cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ export const HeaderContainer = styled.div`
   font-weight: 900;
   background-image: url(${fundo});
   background-size: cover;
-  color: ${cores.vermelha};
+  color: ${colors.red};
 
   div {
     display: flex;
@@ -34,7 +34,7 @@ export const HeaderContainer = styled.div`
 
 export const TextLink = styled(Link)`
   text-decoration: none;
-  color: ${cores.vermelha};
+  color: ${colors.red};
 
   @media (max-width: ${breakpoints.tablet}) {
     display: none;

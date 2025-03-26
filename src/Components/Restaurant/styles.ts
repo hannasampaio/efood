@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { breakpoints, cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { Link } from 'react-router-dom'
 
 type Props = {
@@ -7,8 +7,8 @@ type Props = {
 }
 
 export const Card = styled.div`
-  background-color: ${cores.branca};
-  color: ${cores.vermelha};
+  background-color: ${colors.white};
+  color: ${colors.red};
 `
 
 export const Container = styled.div`
@@ -18,9 +18,9 @@ export const Container = styled.div`
   width: 472px;
   height: 398px;
   font-weight: 700;
-  border: 1px solid ${cores.vermelha};
-  color: ${cores.vermelha};
-  background-color: ${cores.branca};
+  border: 1px solid ${colors.red};
+  color: ${colors.red};
+  background-color: ${colors.white};
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 90%;
@@ -28,7 +28,7 @@ export const Container = styled.div`
   }
 `
 
-export const Imagem = styled.img`
+export const Image = styled.img`
   height: 217px;
   object-fit: cover;
 `
@@ -69,8 +69,8 @@ export const Button = styled(Link)`
   height: 24px;
   margin-left: 8px;
   margin-top: 8px;
-  color: ${cores.begeClara};
-  background-color: ${cores.vermelha};
+  color: ${colors.lightbeige};
+  background-color: ${colors.red};
 
   @media (max-width: ${breakpoints.tablet}) {
     margin-bottom: 8px;
@@ -96,6 +96,6 @@ export const Tag = styled.span`
   padding: 8px;
   font-weight: 700;
   font-size: 12px;
-  color: ${cores.begeClara};
-  background-color: ${cores.vermelha};
+  color: ${colors.lightbeige};
+  background-color: ${colors.red};
 `

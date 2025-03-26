@@ -1,12 +1,15 @@
 import { Dispatch, SetStateAction } from 'react'
 import { useDispatch } from 'react-redux'
-import * as S from './styles'
 
-import botaoFechar from '../../assets/images/fechar.png'
+import { add, openCart } from '../../store/reducers/cart'
+
 import { modalType } from '../PlatesList'
 import { ModalButton } from './styles'
-import { add, openCart } from '../../store/reducers/cart'
-import { formataPreco } from '../../utils'
+
+import closeButton from '../../assets/images/fechar.png'
+import { parseToBrl } from '../../utils'
+
+import * as S from './styles'
 
 interface Props extends modalType {
   setModal: Dispatch<SetStateAction<modalType>>
@@ -24,7 +27,7 @@ const Modal = ({
 }: Props) => {
   const dispatch = useDispatch()
 
-  const fecharModal = () => {
+  const closeModal = () => {
     setModal({
       id: 0,
       descricao: '',
@@ -44,10 +47,10 @@ const Modal = ({
   }
 
   return (
-    <S.Modal className={visivel ? 'visible' : ''}>
+    <S.Modal className={visivel ? 'visible' : ''} key={id}>
       <S.ModalContent>
-        <S.CloseButton onClick={fecharModal}>
-          <img src={botaoFechar} alt="botão fechar" />
+        <S.CloseButton onClick={closeModal}>
+          <img src={closeButton} alt="botão fechar" />
         </S.CloseButton>
         <S.Image src={foto} alt={nome} />
         <S.Content>
@@ -60,11 +63,11 @@ const Modal = ({
             title="Clique aqui para adicionar ao carrinho"
             onClick={addToCart}
           >
-            Adicionar ao carrinho - {formataPreco(preco)}
+            Adicionar ao carrinho - {parseToBrl(preco)}
           </ModalButton>
         </S.Content>
       </S.ModalContent>
-      <div onClick={fecharModal} className="overlay"></div>
+      <div onClick={closeModal} className="overlay"></div>
     </S.Modal>
   )
 }

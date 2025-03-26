@@ -8,6 +8,7 @@ import Footer from './Components/Footer'
 import { store } from './store'
 import Cart from './Components/Cart'
 import Checkout from './Components/Checkout'
+import Payment from './Components/Payment'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Footer />
         <Cart />
         <Checkout />
+        <Payment />
       </BrowserRouter>
     </Provider>
   )

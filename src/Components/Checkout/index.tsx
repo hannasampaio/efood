@@ -1,16 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
 
 import { RootReducer } from '../../store'
-import { closeAddress, openCart } from '../../store/reducers/cart'
+import {
+  closeAddress,
+  openCart,
+  addAddressInfos,
+  openPayment
+} from '../../store/reducers/cart'
+
+import { getTotalPrice } from '../../utils'
 
 import { Sidebar, CheckoutButton, Overlay } from '../Cart/styles'
 import * as S from './styles'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
 
 const Checkout = () => {
-  const { addressOpen } = useSelector((state: RootReducer) => state.cart)
+  const { addressOpen, items } = useSelector((state: RootReducer) => state.cart)
   const dispatch = useDispatch()
+
+  const totalPrice = getTotalPrice(items)
 
   const backToCart = () => {
     dispatch(openCart())
@@ -46,16 +55,40 @@ const Checkout = () => {
         .required('O campo é obrigatório')
     }),
     onSubmit: (values) => {
-      console.log(values)
+      dispatch(
+        addAddressInfos({
+          products: items.map((item) => ({
+            id: item.id,
+            price: totalPrice
+          })),
+
+          delivery: {
+            receiver: values.fullName,
+            address: {
+              description: values.address,
+              city: values.city,
+              zipCode: values.zipCode,
+              number: Number(values.houseNumber),
+              complement: values.complement
+            }
+          }
+        })
+      )
+      dispatch(openPayment())
+      dispatch(closeAddress())
     }
   })
 
-  const getErrorMessage = (fieldname: string, message?: string) => {
+  const checkInputHasError = (fieldname: string) => {
     const isTouched = fieldname in form.touched
     const isInvalid = fieldname in form.errors
+    const hasError = isInvalid && isTouched
 
-    if (isInvalid && isTouched) return message
-    return ''
+    return hasError
+  }
+
+  const handleGoToPayment = () => {
+    form.handleSubmit()
   }
 
   return (
@@ -73,10 +106,8 @@ const Checkout = () => {
               value={form.values.fullName}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('fullName') ? 'error' : ''}
             />
-            <small className="error-message">
-              {getErrorMessage('fullName', form.errors.fullName)}
-            </small>
           </S.Row>
           <S.Row>
             <label htmlFor="address">Endereço</label>
@@ -87,10 +118,8 @@ const Checkout = () => {
               value={form.values.address}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('address') ? 'error' : ''}
             />
-            <small className="error-message">
-              {getErrorMessage('address', form.errors.address)}
-            </small>
           </S.Row>
           <S.Row>
             <label htmlFor="city">Cidade</label>
@@ -101,10 +130,8 @@ const Checkout = () => {
               value={form.values.city}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('city') ? 'error' : ''}
             />
-            <small className="error-message">
-              {getErrorMessage('city', form.errors.city)}
-            </small>
           </S.Row>
           <S.Row className="mid-size">
             <div>
@@ -116,10 +143,8 @@ const Checkout = () => {
                 value={form.values.zipCode}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkInputHasError('zipCode') ? 'error' : ''}
               />
-              <small className="error-message">
-                {getErrorMessage('zipCode', form.errors.zipCode)}
-              </small>
             </div>
             <div>
               <label htmlFor="houseNumber">Número</label>
@@ -130,10 +155,8 @@ const Checkout = () => {
                 value={form.values.houseNumber}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkInputHasError('houseNumber') ? 'error' : ''}
               />
-              <small className="error-message">
-                {getErrorMessage('houseNumber', form.errors.houseNumber)}
-              </small>
             </div>
           </S.Row>
           <S.Row>
@@ -145,15 +168,14 @@ const Checkout = () => {
               value={form.values.complement}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('complement') ? 'error' : ''}
             />
-            <small className="error-message">
-              {getErrorMessage('complement', form.errors.complement)}
-            </small>
           </S.Row>
           <CheckoutButton
             title="Continuar com a compra"
             type="submit"
             className="continueToPayment"
+            onClick={handleGoToPayment}
           >
             Continuar com o pagamento
           </CheckoutButton>

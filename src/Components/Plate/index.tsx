@@ -1,4 +1,4 @@
-import { Button, PizzaContainer } from './styles'
+import * as S from './styles'
 
 type Props = {
   id: number
@@ -19,12 +19,12 @@ const Plate = ({ foto, nome, descricao, onclick }: Props) => {
 
   return (
     <>
-      <PizzaContainer>
+      <S.PizzaContainer>
         <img src={foto} alt={nome} />
         <h2>{nome}</h2>
         <p>{retornaDescricaoPrato(descricao)}</p>
-        <Button onClick={onclick}>Adicionar ao carrinho</Button>
-      </PizzaContainer>
+        <S.Button onClick={onclick}>Adicionar ao carrinho</S.Button>
+      </S.PizzaContainer>
     </>
   )
 }

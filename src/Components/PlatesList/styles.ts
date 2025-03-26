@@ -11,9 +11,11 @@ export const PlatesListContainer = styled.div`
     grid-template-columns: 1fr 1fr;
     justify-items: center;
     gap: 24px;
+  }
 
   @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 1fr;
     justify-items: center;
     gap: 36px;
+  }
 `

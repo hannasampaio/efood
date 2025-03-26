@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const FooterContainer = styled.footer`
   display: flex;
@@ -7,7 +7,7 @@ export const FooterContainer = styled.footer`
   align-items: center;
   justify-content: center;
   height: 298px;
-  background-color: ${cores.bege};
+  background-color: ${colors.beige};
   padding: 40px 0;
 
   .logo {
@@ -35,6 +35,6 @@ export const FooterText = styled.p`
   font-size: 10px;
   font-weight: 400;
   max-width: 480px;
-  color: ${cores.vermelha};
+  color: ${colors.red};
   margin: 80px 0;
 `

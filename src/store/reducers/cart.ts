@@ -28,11 +28,28 @@ type clientAddres = {
   }
 }
 
+type clientCard = {
+  payment: {
+    card: {
+      name: string
+      number: string
+      code: number
+      expires: {
+        month: number
+        year: number
+      }
+    }
+  }
+}
+
 type CartState = {
   items: PlateType[]
   clientAddress: clientAddres
+  clientCard: clientCard
   cartIsOpen: boolean
   addressOpen: boolean
+  paymentOpen: boolean
+  thanksOpen: boolean
 }
 
 const initialState: CartState = {
@@ -50,8 +67,23 @@ const initialState: CartState = {
       }
     }
   },
+  clientCard: {
+    payment: {
+      card: {
+        name: '',
+        number: '',
+        code: 0,
+        expires: {
+          month: 0,
+          year: 0
+        }
+      }
+    }
+  },
   cartIsOpen: false,
-  addressOpen: false
+  addressOpen: false,
+  paymentOpen: false,
+  thanksOpen: false
 }
 
 const cartSlice = createSlice({
@@ -70,6 +102,9 @@ const cartSlice = createSlice({
     remove: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id != action.payload)
     },
+    clear: (state) => {
+      state.items = []
+    },
     openCart: (state) => {
       state.cartIsOpen = true
     },
@@ -79,13 +114,21 @@ const cartSlice = createSlice({
     openAddress: (state) => {
       state.addressOpen = true
     },
-
     closeAddress: (state) => {
       state.addressOpen = false
+    },
+    openPayment: (state) => {
+      state.paymentOpen = true
+    },
+    closePayment: (state) => {
+      state.paymentOpen = false
     },
     addAddressInfos: (state, action: PayloadAction<clientAddres>) => {
       state.clientAddress = action.payload
       console.log(state.clientAddress)
+    },
+    addCardInfos: (state, action: PayloadAction<clientCard>) => {
+      state.clientCard = action.payload
     }
   }
 })
@@ -93,10 +136,14 @@ const cartSlice = createSlice({
 export const {
   add,
   remove,
+  clear,
   openCart,
   closeCart,
   openAddress,
   closeAddress,
-  addAddressInfos
+  openPayment,
+  closePayment,
+  addAddressInfos,
+  addCardInfos
 } = cartSlice.actions
 export default cartSlice.reducer

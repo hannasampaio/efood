@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const PizzaContainer = styled.div`
   display: flex;
@@ -9,8 +9,8 @@ export const PizzaContainer = styled.div`
   padding: 8px;
   width: 320px;
   height: 338px;
-  background-color: ${cores.vermelha};
-  color: ${cores.bege};
+  background-color: ${colors.red};
+  color: ${colors.beige};
 
   img {
     width: 304px;
@@ -35,6 +35,6 @@ export const Button = styled.button`
   font-weight: 900;
   font-size: 14px;
   height: 24px;
-  color: ${cores.vermelha};
-  background-color: ${cores.bege};
+  color: ${colors.red};
+  background-color: ${colors.beige};
 `
