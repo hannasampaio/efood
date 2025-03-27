@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
-import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import InputMask from 'react-input-mask'
+
+import { Sidebar, CheckoutButton, Overlay } from '../Cart/styles'
+
+import * as S from './styles'
 
 import { RootReducer } from '../../store'
 import {
@@ -11,9 +16,6 @@ import {
 } from '../../store/reducers/cart'
 
 import { getTotalPrice } from '../../utils'
-
-import { Sidebar, CheckoutButton, Overlay } from '../Cart/styles'
-import * as S from './styles'
 
 const Checkout = () => {
   const { addressOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -46,8 +48,8 @@ const Checkout = () => {
         .min(3, 'O campo precisa ter pelo menos 3 caracteres')
         .required('O campo é obrigatório'),
       zipCode: Yup.string()
-        .min(8, 'O campo precisa ter pelo menos 8 caracteres')
-        .max(8, 'O campo precisa ter pelo menos 8 caracteres')
+        .min(9, 'O campo precisa ter pelo menos 8 caracteres')
+        .max(9, 'O campo precisa ter pelo menos 8 caracteres')
         .required('O campo é obrigatório'),
       houseNumber: Yup.string()
         .min(1, 'O campo precisa ter pelo menos 1 caracteres')
@@ -136,7 +138,7 @@ const Checkout = () => {
           <S.Row className="mid-size">
             <div>
               <label htmlFor="zipCode">CEP</label>
-              <input
+              <InputMask
                 name="zipCode"
                 id="zipCode"
                 type="text"
@@ -144,6 +146,7 @@ const Checkout = () => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 className={checkInputHasError('zipCode') ? 'error' : ''}
+                mask="99999-999"
               />
             </div>
             <div>

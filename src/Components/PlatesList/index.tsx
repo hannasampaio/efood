@@ -1,6 +1,8 @@
 import { useState } from 'react'
+
 import Modal from '../Modal'
 import Plate from '../Plate'
+
 import { PlatesListContainer } from './styles'
 
 type Props = {
@@ -49,7 +51,7 @@ const PlatesList = ({ plates }: Props) => {
             nome={plate.nome}
             porcao={plate.porcao}
             preco={plate.preco}
-            onclick={() => {
+            onClick={() => {
               setModal({
                 id: plate.id,
                 descricao: plate.descricao,

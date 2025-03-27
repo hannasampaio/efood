@@ -7,6 +7,7 @@ import { modalType } from '../PlatesList'
 import { ModalButton } from './styles'
 
 import closeButton from '../../assets/images/fechar.png'
+
 import { parseToBrl } from '../../utils'
 
 import * as S from './styles'
@@ -40,10 +41,11 @@ const Modal = ({
   }
 
   const addToCart = () => {
-    const plate = { id, nome, descricao, foto, porcao, preco }
+    const plate = { id, descricao, foto, nome, porcao, preco }
 
     dispatch(add(plate))
     dispatch(openCart())
+    closeModal()
   }
 
   return (

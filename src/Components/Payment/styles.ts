@@ -27,6 +27,7 @@ export const Container = styled.div`
     font-size: 14px;
     color: ${colors.beige};
     margin-bottom: 16px;
+    line-height: 22px;
   }
 
   .payment-button {

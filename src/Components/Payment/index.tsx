@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import InputMask from 'react-input-mask'
 
 import { RootReducer } from '../../store'
 import { usePurchaseMutation } from '../../services/api'
-import { parseToBrl } from '../../utils'
 import {
   openAddress,
   closePayment,
@@ -12,11 +12,14 @@ import {
   addCardInfos
 } from '../../store/reducers/cart'
 
+import { parseToBrl, getTotalPrice } from '../../utils'
+
 import { Sidebar, CheckoutButton, Overlay } from '../Cart/styles'
+
 import * as S from './styles'
 
 const Payment = () => {
-  const [purchase, { isSuccess, data }] = usePurchaseMutation()
+  const [purchase, { isSuccess, data, isLoading }] = usePurchaseMutation()
   const { paymentOpen, items, clientAddress } = useSelector(
     (state: RootReducer) => state.cart
   )
@@ -32,11 +35,7 @@ const Payment = () => {
     dispatch(closePayment())
   }
 
-  const getTotalPrice = () => {
-    return items.reduce((acum, valorAtual) => {
-      return (acum += valorAtual.preco!)
-    }, 0)
-  }
+  const totalPrice = getTotalPrice(items)
 
   const form = useFormik({
     initialValues: {
@@ -105,9 +104,9 @@ const Payment = () => {
       <S.Container className={paymentOpen ? 'payment-is-open' : ''}>
         <Overlay />
         <Sidebar>
-          {isSuccess ? (
+          {isSuccess && data ? (
             <>
-              <h3>Pedido realizado - {data?.orderId}</h3>
+              <h3>Pedido realizado - {data.orderId}</h3>
               <p>
                 Estamos felizes em informar que seu pedido já está em processo
                 de preparação e, em breve, será entregue no endereço fornecido.
@@ -135,7 +134,7 @@ const Payment = () => {
             </>
           ) : (
             <>
-              <h3>Pagamento - Valor a pagar {parseToBrl(getTotalPrice())}</h3>
+              <h3>Pagamento - Valor a pagar {parseToBrl(totalPrice)}</h3>
               <S.Row>
                 <label htmlFor="cardName">Nome no cartão</label>
                 <input
@@ -151,7 +150,7 @@ const Payment = () => {
               <S.Row className="mid-size">
                 <div>
                   <label htmlFor="cardNumber">Número no cartão</label>
-                  <input
+                  <InputMask
                     name="cardNumber"
                     id="cardNumber"
                     type="text"
@@ -159,11 +158,12 @@ const Payment = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cardNumber') ? 'error' : ''}
+                    mask="9999 9999 9999 9999"
                   />
                 </div>
                 <div>
                   <label htmlFor="cardCode">CVV</label>
-                  <input
+                  <InputMask
                     name="cardCode"
                     id="cardCode"
                     type="text"
@@ -171,13 +171,14 @@ const Payment = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cardCode') ? 'error' : ''}
+                    mask="999"
                   />
                 </div>
               </S.Row>
               <S.Row className="mid-size">
                 <div>
                   <label htmlFor="expiresMonth">Mês de vencimento</label>
-                  <input
+                  <InputMask
                     name="expiresMonth"
                     id="expiresMonth"
                     type="text"
@@ -187,11 +188,12 @@ const Payment = () => {
                     className={
                       checkInputHasError('expiresMonth') ? 'error' : ''
                     }
+                    mask="99"
                   />
                 </div>
                 <div>
                   <label htmlFor="expiresYear">Ano de vencimento</label>
-                  <input
+                  <InputMask
                     name="expiresYear"
                     id="expiresYear"
                     type="text"
@@ -199,17 +201,20 @@ const Payment = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('expiresYear') ? 'error' : ''}
+                    mask="99"
                   />
                 </div>
               </S.Row>
               <CheckoutButton
                 onClick={handleSendTicket}
-                disabled={!form.isValid}
+                disabled={isLoading}
                 title="Continuar com a compra"
                 type="submit"
                 className="payment-button"
               >
-                Finalizar pagamento
+                {isLoading
+                  ? 'Finalizando pagamento...'
+                  : ' Finalizar pagamento'}
               </CheckoutButton>
               <CheckoutButton
                 title="Voltar para o carrinho"

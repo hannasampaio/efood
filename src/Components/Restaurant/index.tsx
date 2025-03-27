@@ -1,10 +1,11 @@
 import * as S from './styles'
+
 import Star from '../../assets/images/estrela.png'
 
 type Props = {
   id: number
   image: string
-  nome: string
+  name: string
   nota: number
   info: string
   destaque: boolean
@@ -14,7 +15,7 @@ type Props = {
 const Restaurant = ({
   id,
   image,
-  nome,
+  name,
   nota,
   info,
   destaque,
@@ -30,13 +31,13 @@ const Restaurant = ({
 
   return (
     <S.Container>
-      <S.Image src={image} alt={nome} />
+      <S.Image src={image} alt={name} />
       <S.TagContainer destaque={destaque}>
         {destaque ? <S.Tag>Destaque da semana</S.Tag> : ''}
         <S.Tag>{category}</S.Tag>
       </S.TagContainer>
       <S.Title>
-        <h2>{nome}</h2>
+        <h2>{name}</h2>
         <span>
           {nota} <img src={Star} alt="Nota do restaurante" />
         </span>

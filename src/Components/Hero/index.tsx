@@ -1,4 +1,5 @@
 import * as S from './styles'
+
 import logo from '../../assets/images/logo.png'
 
 const Hero = () => (

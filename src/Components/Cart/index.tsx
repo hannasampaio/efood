@@ -1,19 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
 
+import { RootReducer } from '../../store'
 import { closeCart, openAddress, remove } from '../../store/reducers/cart'
-import { parseToBrl, getTotalPrice } from '../../utils'
 
 import * as S from './styles'
+
+import { parseToBrl, getTotalPrice } from '../../utils'
 
 const Cart = () => {
   const { cartIsOpen, items } = useSelector((state: RootReducer) => state.cart)
 
   const dispatch = useDispatch()
 
-  const TotalPrice = getTotalPrice(items)
-
-  const closeCar = () => {
+  const closeCartSidebar = () => {
     dispatch(closeCart())
   }
 
@@ -28,7 +27,7 @@ const Cart = () => {
 
   return (
     <S.CartContainer className={cartIsOpen ? 'cart-is-open' : ''}>
-      <S.Overlay onClick={closeCar} />
+      <S.Overlay onClick={closeCartSidebar} />
       <S.Sidebar>
         {items.length === 0 ? (
           <S.EmptyCartMessage>O carrinho está vazio!</S.EmptyCartMessage>
@@ -47,7 +46,7 @@ const Cart = () => {
               ))}
             </ul>
             <S.Prices>
-              Valor total <span>{parseToBrl(TotalPrice)}</span>
+              Valor total <span>{parseToBrl(getTotalPrice(items))}</span>
             </S.Prices>
             <S.CheckoutButton
               title="Clique aqui para continuar com a entrega"

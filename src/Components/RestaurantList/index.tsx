@@ -1,5 +1,5 @@
-import { restaurantsType } from '../../pages/Home'
 import Restaurant from '../Restaurant'
+
 import { List } from './styles'
 
 type Props = {
@@ -15,7 +15,7 @@ const RestaurantList = ({ restaurants }: Props) => (
         image={restaurant.capa}
         category={restaurant.tipo}
         destaque={restaurant.destaque}
-        nome={restaurant.titulo}
+        name={restaurant.titulo}
         nota={restaurant.avaliacao}
         info={restaurant.descricao}
       />
